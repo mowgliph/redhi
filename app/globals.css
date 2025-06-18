@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+}
+
+@layer base {
+  :root {
+    /* RedHi Custom Color Palette */
+    --bright-pink-crayola: #e85d75;
+    --blush: #c76d7e;
+    --cinereous: #9f8082;
+    --battleship-gray: #8d918b;
+    --rose-quartz: #ad9b9a;
+
+    /* Light theme */
+    --background: 0 0% 98%;
+    --foreground: 345 25% 15%;
+    --card: 0 0% 96%;
+    --card-foreground: 345 25% 20%;
+    --popover: 0 0% 96%;
+    --popover-foreground: 345 25% 20%;
+    --primary: 345 65% 62%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 15 20% 70%;
+    --secondary-foreground: 345 25% 20%;
+    --muted: 15 15% 88%;
+    --muted-foreground: 345 15% 40%;
+    --accent: 15 25% 75%;
+    --accent-foreground: 345 25% 20%;
+    --destructive: 0 65% 62%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 15 15% 85%;
+    --input: 15 15% 90%;
+    --ring: 345 65% 62%;
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    /* Dark theme with custom palette */
+    --background: 345 20% 6%;
+    --foreground: 15 15% 95%;
+    --card: 345 18% 8%;
+    --card-foreground: 15 15% 92%;
+    --popover: 345 18% 8%;
+    --popover-foreground: 15 15% 92%;
+    --primary: 345 65% 62%;
+    --primary-foreground: 345 20% 6%;
+    --secondary: 15 12% 18%;
+    --secondary-foreground: 15 15% 85%;
+    --muted: 15 12% 15%;
+    --muted-foreground: 15 10% 60%;
+    --accent: 15 15% 20%;
+    --accent-foreground: 15 15% 85%;
+    --destructive: 0 65% 55%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 15 12% 16%;
+    --input: 15 12% 12%;
+    --ring: 345 65% 62%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border transition-colors duration-300;
+  }
+
+  html {
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  body {
+    @apply bg-background text-foreground font-light transition-all duration-300;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  /* Custom scrollbar with theme support */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-muted transition-colors duration-300;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-cinereous rounded-full transition-colors duration-300;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-blush;
+  }
+}
+
+/* Enhanced gradient backgrounds with theme support */
+.gradient-bg {
+  background: linear-gradient(
+    135deg,
+    hsl(var(--background)) 0%,
+    color-mix(in hsl, hsl(var(--background)), var(--rose-quartz) 8%) 30%,
+    color-mix(in hsl, hsl(var(--background)), var(--cinereous) 5%) 70%,
+    hsl(var(--background)) 100%
+  );
+  transition: background 0.5s ease;
+}
+
+.card-gradient {
+  background: linear-gradient(
+    135deg,
+    color-mix(in hsl, hsl(var(--card)), transparent 15%) 0%,
+    hsl(var(--card)) 50%,
+    color-mix(in hsl, hsl(var(--card)), var(--bright-pink-crayola) 2%) 100%
+  );
+  backdrop-filter: blur(12px);
+  border: 1px solid color-mix(in hsl, hsl(var(--border)), transparent 30%);
+  transition: all 0.3s ease;
+}
+
+.card-gradient:hover {
+  border-color: color-mix(in hsl, hsl(var(--border)), var(--bright-pink-crayola) 20%);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 25px -5px color-mix(in hsl, hsl(var(--foreground)), transparent 85%);
+}
+
+/* Theme transition animations */
+.theme-transition * {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+/* Button hover effects with theme support */
+.btn-gradient {
+  background: linear-gradient(135deg, var(--bright-pink-crayola) 0%, var(--blush) 100%);
+  transition: all 0.3s ease;
+}
+
+.btn-gradient:hover {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--bright-pink-crayola) 90%, black) 0%,
+    color-mix(in srgb, var(--blush) 90%, black) 100%
+  );
+  transform: translateY(-1px);
+  box-shadow: 0 8px 25px -5px color-mix(in srgb, var(--bright-pink-crayola), transparent 60%);
+}
+
+/* Dark mode specific enhancements */
+.dark .gradient-bg {
+  background: linear-gradient(
+    135deg,
+    hsl(var(--background)) 0%,
+    color-mix(in hsl, hsl(var(--background)), var(--bright-pink-crayola) 3%) 30%,
+    color-mix(in hsl, hsl(var(--background)), var(--cinereous) 4%) 70%,
+    hsl(var(--background)) 100%
+  );
+}
+
+.dark .card-gradient {
+  background: linear-gradient(
+    135deg,
+    color-mix(in hsl, hsl(var(--card)), var(--bright-pink-crayola) 1%) 0%,
+    hsl(var(--card)) 50%,
+    color-mix(in hsl, hsl(var(--card)), transparent 10%) 100%
+  );
+}
